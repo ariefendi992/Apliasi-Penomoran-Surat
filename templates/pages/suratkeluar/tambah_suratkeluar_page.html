@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-outline card-cyan">
+            <div class="card-header">
+                <h3 class="card-title"></h3>
+            </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="{{ form.klasifikasi.id_for_label }}">{{ form.klasifikasi.label }}</label>
+                                {{ form.klasifikasi }}
+                            </div>
+                        </div>
+                        <div class="col col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="{{ form.masalahPokok.id_for_label }}">{{ form.masalahPokok.label }}</label>
+                                {{ form.masalahPokok }}
+                            </div>
+                        </div>
+                        <div class="col col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="{{ form.bagianMasalah.id_for_label }}">
+                                    {{ form.bagianMasalah.label }}
+                                </label>
+                                {{ form.bagianMasalah }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer"></div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>
+    const klasifikasiID = document.getElementById('id_klasifikasi')
+    const masalahPokokID = document.getElementById('id_masalahPokok')
+    klasifikasiID.addEventListener('change', (e) => {
+        var baseUrl = "{% url 'api:masalahpokok' klasifikasi_id='data_id' %}"
+        var url = baseUrl.replace('data_id', klasifikasiID.value)
+        fetch(url).then((resp) => {
+            resp.json().then((data) => {
+                if (data.status === true) {
+                    data.data.forEach((item) => {
+                        masalahPokokID.innerHTML += `<option value=${item.id}>${item.kode}</option>`
+                    })
+                } else {
+                    masalahPokokID.innerHTML = '<option value="">-- Pilih --</option>'
+                }
+            })
+        })
+    })
+
+    // WINDOW REFRESH
+    window.onload = () => {
+        if (klasifikasiID.value) {
+            var baseUrl = "{% url 'api:masalahpokok' klasifikasi_id='data_id' %}"
+            var url = baseUrl.replace('data_id', klasifikasiID.value)
+            fetch(url).then((resp) => {
+                resp.json().then((data) => {
+                    if (data.status === true) {
+                        data.data.forEach((item) => {
+                            masalahPokokID.innerHTML += `<option value=${item.id}>${item.kode}</option>`
+                        })
+                    } else {
+                        masalahPokokID.innerHTML = '<option value="">-- Pilih --</option>'
+                    }
+                })
+            })
+        }
+    }
+</script>
+{% endblock script %}

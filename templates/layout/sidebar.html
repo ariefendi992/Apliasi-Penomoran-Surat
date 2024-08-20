@@ -1,0 +1,124 @@
+{% load static %}
+<aside class="main-sidebar elevation-4 sidebar-light-navy">
+
+  <!-- Brand Logo -->
+  <a href="index3.html" class="brand-link bg-cyan">
+    <img src="{% static 'img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      style="opacity: .8">
+    <span class="brand-text font-weight-light">AdminLTE 3</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="{% static 'img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <a href="#" class="d-block">BWS-PB </a>
+      </div>
+    </div>
+
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu"
+        data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+        <!-- <li class="nav-item menu-open">
+          <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Starter Pages
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Active Page</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Inactive Page</p>
+              </a>
+            </li>
+          </ul>
+        </li> -->
+        <li class="nav-item ">
+          <a href="{% url 'beranda:berandapage' %}"
+            class="nav-link {% if page == 'beranda' %} active {% else %} None {% endif %}">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Beranda
+            </p>
+          </a>
+        </li>
+
+        <li
+          class="nav-item {% if page == 'suratmasuk' or page == 'tambahsuratmasuk' %} menu-open {% else %} None {% endif %}">
+          <a href="#"
+            class="nav-link {% if page == 'suratmasuk' or page == 'tambahsuratmasuk' %} active {% else %} None {% endif %}">
+            <i class="nav-icon fas fa-file"></i>
+            <p>Surat Masuk
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'surat:tambahsuratmasuk' %}"
+                class="nav-link {% if page == 'tambahsuratmasuk' %} active {% endif %}">
+                <i
+                  class="far {% if page == 'tambahsuratmasuk' %} fa-dot-circle {% else %} fa-circle {% endif %} nav-icon"></i>
+                <p>Tambah Data</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a href="{% url 'surat:daftarsuratmasuk' %}"
+                class="nav-link {% if page == 'suratmasuk' %} active {% else %} None {% endif %}">
+                <i
+                  class="far  nav-icon {% if page == 'suratmasuk' %} fa-dot-circle {% else %} fa-circle {% endif %}"></i>
+                <p>Daftar Surat</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item {% if page == 'suratkeluar' or page == 'tambahsuratkeluar' %} menu-open {% endif %}">
+          <a href="#" class="nav-link {% if page == 'suratkeluar' or page == 'tambahsuratkeluar' %} active {% endif %}">
+            <i class="nav-icon fas fa-file"></i>
+            <p>Surat Keluar
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{% url 'surat:tambahsuratkeluar' %}"
+                class="nav-link {% if page == 'tambahsuratkeluar' %} active {% endif %}">
+                <i
+                  class="far {% if page == 'tambahsuratkeluar' %} fa-dot-circle {% else %} fa-circle {% endif %} nav-icon"></i>
+                <p>Tambah Data</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a href="{% url 'surat:daftarsuratkeluar' %}"
+                class="nav-link {% if page == 'suratkeluar' %} active {% endif %}">
+                <i
+                  class="far {% if page == 'suratkeluar' %} fa-dot-circle {% else %} fa-circle {% endif %} nav-icon "></i>
+                <p>Daftar Surat</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+
+</aside>
