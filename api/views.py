@@ -88,3 +88,37 @@ def get_suku_masalah(request: HttpRequest):
         return JsonResponse(data={
             'msg': 'Tidak ada data.'
         })
+    
+def get_kode_balai(request: HttpRequest):
+    kode_balai_id = request.GET.get('q')
+    group_data = {
+        'status' : True,
+    }
+    if kode_balai_id:
+
+        balai_model = BalaiModel.objects.filter(id=kode_balai_id).first()
+
+        if balai_model:
+            group_data["data"]= ({
+                'id': balai_model.id,
+                'kode' : balai_model.kode_balai,
+                'nama_balai': balai_model.nama_balai
+            })
+
+        else:
+            group_data["status"] = False
+            group_data['msg']= 'Data tidak ditemukan!' 
+
+    else:
+        balai_model = BalaiModel.objects.all()
+        group_data["data"] = []
+        for i in balai_model:
+            group_data['data'].append(
+                {
+                    'id': i.id,
+                    'kode' : i.kode_balai,
+                    'nama_balai': i.nama_balai
+                }
+            )
+
+    return JsonResponse(data=group_data, safe=False)
