@@ -14,4 +14,6 @@ urlpatterns = [
         get_bagian_masalah,
         name="bagianmasalah",
     ),
+    path('suku-masalah/results/', get_suku_masalah, name='sukumasalah'),
+    path('kode-balai', get_kode_balai, name='balai')
 ]
