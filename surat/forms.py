@@ -17,3 +17,8 @@ class FormTambahSuratKeluar(forms.Form):
         choices=[("", "-- Pilih --")],
         widget=forms.Select(attrs={"class": "form-control"}),
     )
+    sukuMasalah = forms.ChoiceField(
+        label="Suku Masalah",
+        choices=[("", "-- Pilih --")],
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )

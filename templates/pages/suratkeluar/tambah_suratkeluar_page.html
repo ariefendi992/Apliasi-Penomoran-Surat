@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="card card-outline card-cyan">
             <div class="card-header">
                 <h3 class="card-title"></h3>
@@ -11,24 +11,32 @@
                 {% csrf_token %}
                 <div class="card-body">
                     <div class="row">
-                        <div class="col col-md-4 col-sm-12">
+                        <div class="col col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label for="{{ form.klasifikasi.id_for_label }}">{{ form.klasifikasi.label }}</label>
                                 {{ form.klasifikasi }}
                             </div>
                         </div>
-                        <div class="col col-md-4 col-sm-12">
+                        <div class="col col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label for="{{ form.masalahPokok.id_for_label }}">{{ form.masalahPokok.label }}</label>
                                 {{ form.masalahPokok }}
                             </div>
                         </div>
-                        <div class="col col-md-4 col-sm-12">
+                        <div class="col col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label for="{{ form.bagianMasalah.id_for_label }}">
                                     {{ form.bagianMasalah.label }}
                                 </label>
                                 {{ form.bagianMasalah }}
+                            </div>
+                        </div>
+                        <div class="col col-md-3 col-sm-12">
+                            <div class="form-group">
+                                <label for="{{ form.sukuMasalah.id_for_label }}">
+                                    {{ form.sukuMasalah.label }}
+                                </label>
+                                {{ form.sukuMasalah }}
                             </div>
                         </div>
                     </div>
@@ -44,14 +52,16 @@
 <script>
     const klasifikasiID = document.getElementById('id_klasifikasi')
     const masalahPokokID = document.getElementById('id_masalahPokok')
+    const bagianMasalahID = document.getElementById('id_bagianMasalah')
+    const sukuMasalahID = document.getElementById('id_sukuMasalah')
+
     klasifikasiID.addEventListener('change', (e) => {
-        var baseUrl = "{% url 'api:masalahpokok' klasifikasi_id='data_id' %}"
-        var url = baseUrl.replace('data_id', klasifikasiID.value)
+        var url = `{% url "api:masalahpokok" %}?q=${klasifikasiID.value}`
         fetch(url).then((resp) => {
             resp.json().then((data) => {
                 if (data.status === true) {
                     data.data.forEach((item) => {
-                        masalahPokokID.innerHTML += `<option value=${item.id}>${item.kode}</option>`
+                        masalahPokokID.innerHTML += `<option value=${item.id}>${item.kode} :: ${item.masalah_pokok}</option>`
                     })
                 } else {
                     masalahPokokID.innerHTML = '<option value="">-- Pilih --</option>'
@@ -60,16 +70,52 @@
         })
     })
 
+    masalahPokokID.addEventListener('change', () => {
+        var url = `{% url "api:bagianmasalah" %}?q=${masalahPokokID.value}`
+        if (masalahPokokID.value !== '') {
+
+            fetch(url).then((resp) => {
+                resp.json().then((value) => {
+                    if (value.status === true) {
+                        value.data.forEach((item) => {
+                            bagianMasalahID.innerHTML += `<option value="${item.id}">${item.kode} :: ${item.bagian_masalah}</option>`
+                        })
+                    } else {
+                        bagianMasalahID.innerHTML = '<option value="">-- Pilih --</option>'
+                    }
+                })
+            })
+        } else {
+            bagianMasalahID.innerHTML = '<option value="">-- Pilih --</option>'
+
+        }
+    })
+
+    bagianMasalahID.addEventListener('change', () => {
+        if (bagianMasalahID.value !== '') {
+            const url = `{% url "api:sukumasalah" %}?q=${bagianMasalahID.value}`
+            fetch(url).then((resp) => {
+                resp.json().then((data) => {
+                    data.data.forEach((item) => {
+                        sukuMasalahID.innerHTML += `<option value="${item.id}">${item.kode} :: ${item.suku_masalah}</option>`
+                    })
+                })
+            })
+        } else {
+            sukuMasalahID.innerHTML = '<option value="">-- Pilih --</option>'
+        }
+
+    })
+
     // WINDOW REFRESH
     window.onload = () => {
         if (klasifikasiID.value) {
-            var baseUrl = "{% url 'api:masalahpokok' klasifikasi_id='data_id' %}"
-            var url = baseUrl.replace('data_id', klasifikasiID.value)
+            var url = `{% url "api:masalahpokok" %}?q=${klasifikasiID.value}`
             fetch(url).then((resp) => {
                 resp.json().then((data) => {
                     if (data.status === true) {
                         data.data.forEach((item) => {
-                            masalahPokokID.innerHTML += `<option value=${item.id}>${item.kode}</option>`
+                            masalahPokokID.innerHTML += `<option value=${item.id}>${item.kode} :: ${item.masalah_pokok}</option>`
                         })
                     } else {
                         masalahPokokID.innerHTML = '<option value="">-- Pilih --</option>'
