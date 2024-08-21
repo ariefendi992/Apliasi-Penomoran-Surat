@@ -64,3 +64,27 @@ def get_bagian_masalah(request):
             )
 
         return JsonResponse(data=group_data, status=200)
+
+def get_suku_masalah(request: HttpRequest):
+    bagian_masalah_id = request.GET.get('q')
+
+    if bagian_masalah_id:
+        group_data = {
+            'status': True,
+            'data': []
+        }
+        suku_masalah = SukuMasalahModel.objects.filter(bagianmasalah=bagian_masalah_id)
+        for i in suku_masalah:
+            group_data["data"].append({
+                'id':i.id,
+                'kode': i.kode,
+                'suku_masalah': i.suku_masalah,
+            })
+
+        print(group_data)
+
+        return JsonResponse(data=group_data, safe=False)
+    else:
+        return JsonResponse(data={
+            'msg': 'Tidak ada data.'
+        })
