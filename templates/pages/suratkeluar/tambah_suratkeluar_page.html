@@ -2,127 +2,186 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-8">
-        <div class="card card-outline card-cyan">
-            <div class="card-header">
-                <h3 class="card-title"></h3>
+  <div class="col-lg-8 col-md-12 col-12">
+    <div class="card card-outline card-cyan">
+      <div class="card-header">
+        <h3 class="card-title">Tambah Data Surat Keluar</h3>
+      </div>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label for="{{ form.klasifikasi.id_for_label }}">{{ form.klasifikasi.label }}</label>
+                {{ form.klasifikasi }}
+              </div>
             </div>
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col col-md-3 col-sm-12">
-                            <div class="form-group">
-                                <label for="{{ form.klasifikasi.id_for_label }}">{{ form.klasifikasi.label }}</label>
-                                {{ form.klasifikasi }}
-                            </div>
-                        </div>
-                        <div class="col col-md-3 col-sm-12">
-                            <div class="form-group">
-                                <label for="{{ form.masalahPokok.id_for_label }}">{{ form.masalahPokok.label }}</label>
-                                {{ form.masalahPokok }}
-                            </div>
-                        </div>
-                        <div class="col col-md-3 col-sm-12">
-                            <div class="form-group">
-                                <label for="{{ form.bagianMasalah.id_for_label }}">
-                                    {{ form.bagianMasalah.label }}
-                                </label>
-                                {{ form.bagianMasalah }}
-                            </div>
-                        </div>
-                        <div class="col col-md-3 col-sm-12">
-                            <div class="form-group">
-                                <label for="{{ form.sukuMasalah.id_for_label }}">
-                                    {{ form.sukuMasalah.label }}
-                                </label>
-                                {{ form.sukuMasalah }}
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-12 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label for="{{ form.masalahPokok.id_for_label }}">{{ form.masalahPokok.label }}</label>
+                {{ form.masalahPokok }}
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label for="{{ form.bagianMasalah.id_for_label }}">
+                  {{ form.bagianMasalah.label }}
+                </label>
+                {{ form.bagianMasalah }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label for="{{ form.sukuMasalah.id_for_label }}">
+                  {{ form.sukuMasalah.label }}
+                </label>
+                {{ form.sukuMasalah }}
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-sm-12">
+              <div class="row">
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <label for="{{ form.kodeBalai.id_for_label }}">{{ form.kodeBalai.label }}</label>
+                    {{ form.kodeBalai }}
+                  </div>
                 </div>
-                <div class="card-footer"></div>
-            </form>
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label for="{{ form.noUrut.id_for_label }}">{{ form.noUrut.label }}</label>
+                    {{ form.noUrut }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label for="{{ form.tglSurat.id_for_label }}">{{ form.tglSurat.label }}</label>
+                {{ form.tglSurat }}
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label for="{{ form.hal.id_for_label }}">{{ form.hal.label }}</label>
+                {{ form.hal }}
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label for="{{ form.ttdSurat.id_for_label }}">{{ form.ttdSurat.label }}</label>
+                {{ form.ttdSurat }}
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{ form.lampiran.label }}</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    {{ form.lampiran }}
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <p style="font-size: 14px;"><em>- File hasil scan yang sudah dibubuhi TTD dan stempel.</em> <br> <em>- *)
+                Wajib
+                di isi.</em>
+            </p>
+          </div>
         </div>
+        <div class="card-footer">
+          <button type="submit" class="float-right btn btn-info">Simpan</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 {% endblock content %}
 
 {% block script %}
 <script>
-    const klasifikasiID = document.getElementById('id_klasifikasi')
-    const masalahPokokID = document.getElementById('id_masalahPokok')
-    const bagianMasalahID = document.getElementById('id_bagianMasalah')
-    const sukuMasalahID = document.getElementById('id_sukuMasalah')
+  const klasifikasiID = document.getElementById('id_klasifikasi')
+  const masalahPokokID = document.getElementById('id_masalahPokok')
+  const bagianMasalahID = document.getElementById('id_bagianMasalah')
+  const sukuMasalahID = document.getElementById('id_sukuMasalah')
 
-    klasifikasiID.addEventListener('change', (e) => {
-        var url = `{% url "api:masalahpokok" %}?q=${klasifikasiID.value}`
-        fetch(url).then((resp) => {
-            resp.json().then((data) => {
-                if (data.status === true) {
-                    data.data.forEach((item) => {
-                        masalahPokokID.innerHTML += `<option value=${item.id}>${item.kode} :: ${item.masalah_pokok}</option>`
-                    })
-                } else {
-                    masalahPokokID.innerHTML = '<option value="">-- Pilih --</option>'
-                }
-            })
-        })
-    })
-
-    masalahPokokID.addEventListener('change', () => {
-        var url = `{% url "api:bagianmasalah" %}?q=${masalahPokokID.value}`
-        if (masalahPokokID.value !== '') {
-
-            fetch(url).then((resp) => {
-                resp.json().then((value) => {
-                    if (value.status === true) {
-                        value.data.forEach((item) => {
-                            bagianMasalahID.innerHTML += `<option value="${item.id}">${item.kode} :: ${item.bagian_masalah}</option>`
-                        })
-                    } else {
-                        bagianMasalahID.innerHTML = '<option value="">-- Pilih --</option>'
-                    }
-                })
-            })
+  klasifikasiID.addEventListener('change', (e) => {
+    var url = `{% url "api:masalahpokok" %}?q=${klasifikasiID.value}`
+    fetch(url).then((resp) => {
+      resp.json().then((data) => {
+        if (data.status === true) {
+          data.data.forEach((item) => {
+            masalahPokokID.innerHTML += `<option value=${item.id}>${item.kode} :: ${item.masalah_pokok}</option>`
+          })
         } else {
+          masalahPokokID.innerHTML = '<option value="">-- Pilih --</option>'
+        }
+      })
+    })
+  })
+
+  masalahPokokID.addEventListener('change', () => {
+    var url = `{% url "api:bagianmasalah" %}?q=${masalahPokokID.value}`
+    if (masalahPokokID.value !== '') {
+
+      fetch(url).then((resp) => {
+        resp.json().then((value) => {
+          if (value.status === true) {
+            value.data.forEach((item) => {
+              bagianMasalahID.innerHTML += `<option value="${item.id}">${item.kode} :: ${item.bagian_masalah}</option>`
+            })
+          } else {
             bagianMasalahID.innerHTML = '<option value="">-- Pilih --</option>'
+          }
+        })
+      })
+    } else {
+      bagianMasalahID.innerHTML = '<option value="">-- Pilih --</option>'
 
-        }
-    })
-
-    bagianMasalahID.addEventListener('change', () => {
-        if (bagianMasalahID.value !== '') {
-            const url = `{% url "api:sukumasalah" %}?q=${bagianMasalahID.value}`
-            fetch(url).then((resp) => {
-                resp.json().then((data) => {
-                    data.data.forEach((item) => {
-                        sukuMasalahID.innerHTML += `<option value="${item.id}">${item.kode} :: ${item.suku_masalah}</option>`
-                    })
-                })
-            })
-        } else {
-            sukuMasalahID.innerHTML = '<option value="">-- Pilih --</option>'
-        }
-
-    })
-
-    // WINDOW REFRESH
-    window.onload = () => {
-        if (klasifikasiID.value) {
-            var url = `{% url "api:masalahpokok" %}?q=${klasifikasiID.value}`
-            fetch(url).then((resp) => {
-                resp.json().then((data) => {
-                    if (data.status === true) {
-                        data.data.forEach((item) => {
-                            masalahPokokID.innerHTML += `<option value=${item.id}>${item.kode} :: ${item.masalah_pokok}</option>`
-                        })
-                    } else {
-                        masalahPokokID.innerHTML = '<option value="">-- Pilih --</option>'
-                    }
-                })
-            })
-        }
     }
+  })
+
+  bagianMasalahID.addEventListener('change', () => {
+    if (bagianMasalahID.value !== '') {
+      const url = `{% url "api:sukumasalah" %}?q=${bagianMasalahID.value}`
+      fetch(url).then((resp) => {
+        resp.json().then((data) => {
+          data.data.forEach((item) => {
+            sukuMasalahID.innerHTML += `<option value="${item.id}">${item.kode} :: ${item.suku_masalah}</option>`
+          })
+        })
+      })
+    } else {
+      sukuMasalahID.innerHTML = '<option value="">-- Pilih --</option>'
+    }
+
+  })
+
+  // WINDOW REFRESH
+  window.onload = () => {
+    if (klasifikasiID.value) {
+      var url = `{% url "api:masalahpokok" %}?q=${klasifikasiID.value}`
+      fetch(url).then((resp) => {
+        resp.json().then((data) => {
+          if (data.status === true) {
+            data.data.forEach((item) => {
+              masalahPokokID.innerHTML += `<option value=${item.id}>${item.kode} :: ${item.masalah_pokok}</option>`
+            })
+          } else {
+            masalahPokokID.innerHTML = '<option value="">-- Pilih --</option>'
+          }
+        })
+      })
+    }
+  }
 </script>
 {% endblock script %}

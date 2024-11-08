@@ -5,6 +5,7 @@ from .models import (
     KlasifikasiModel,
     MasalahPokokModel,
     SukuMasalahModel,
+    TandaTanganModel,
 )
 
 
@@ -25,8 +26,13 @@ class SukuMasalahAdmin(admin.ModelAdmin):
     list_display = ["kode", "suku_masalah", "bagianmasalah"]
 
 
+class TandaTanganAdmin(admin.ModelAdmin):
+    list_display = ["kode", "tertanda"]
+
+
 admin.site.register(BalaiModel, BalaiAdmin)
 admin.site.register(KlasifikasiModel)
 admin.site.register(MasalahPokokModel, MasalahPokokAdmin)
 admin.site.register(BagianMasalah, BagianMasalahAdmin)
 admin.site.register(SukuMasalahModel, SukuMasalahAdmin)
+admin.site.register(TandaTanganModel, TandaTanganAdmin)

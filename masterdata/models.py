@@ -80,4 +80,15 @@ class SukuMasalahModel(models.Model):
         verbose_name_plural = "Suku Masalah"
 
     def __str__(self):
-        return self.suku_masalah
+        return f"{self.pk} - {self.suku_masalah}"
+
+
+class TandaTanganModel(models.Model):
+    kode = models.CharField(max_length=4, null=True, blank=True)
+    tertanda = models.CharField(max_length=128, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Tertanda Surat"
+
+    def __str__(self):
+        return f"{self.tertanda}"
