@@ -2,18 +2,58 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-md-12 col-lg-8">
+  <div class="col-md-12 col-lg-6">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">
           Tambah Data Surat Masuk
         </h3>
       </div>
-      <form action="">
+      <form method="post" enctype="multipart/form-data">\
+        {% csrf_token %}
         <div class="card-body">
-          
+          <div class="row">
+            <div class="col-12 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="{{ form.noSurat.id_for_label }}">{{ form.noSurat.label }}</label>
+                {{ form.noSurat }}
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="{{ form.tglSurat.id_for_label }}">{{ form.tglSurat.label }}</label>
+                {{ form.tglSurat }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label for="{{ form.hal.id_for_label }}">{{ form.hal.label }}</label>
+                {{ form.hal }}
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-sm-12">
+              <div class="form-group">
+                <label>{{ form.lampiran.label }}</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    {{ form.lampiran }}
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <p style="font-size: 14px;"><em>- *)
+                Wajib
+                di isi.</em>
+            </p>
+          </div>
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer"><button type="submit" class="float-right btn btn-info">Simpan</button></div>
       </form>
     </div>
   </div>
