@@ -11,12 +11,31 @@ from masterdata.models import (
     TandaTanganModel,
 )
 from .forms import *
+import ast
 
 
 # Create your views here.
 def daftar_suratmasuk_page(request: HttpRequest):
 
-    context = dict(titlepage="Surat Masuk", page="suratmasuk")
+    query = SuratMasukModel.objects.all()
+    data = []
+    for i in query:
+        filename = f"{i.file}".split("surat_masuk/")
+        reverse_filename = "surat_masuk\\".join(filename)
+        data.append(
+            {
+                "tgl": i.tgl_surat,
+                "noSurat": ast.literal_eval(i.no_surat)[0],
+                "hal": i.hal,
+                "doc": reverse_filename,
+            }
+        )
+
+    context = dict(
+        titlepage="Surat Masuk",
+        page="suratmasuk",
+        data=data,
+    )
     return render(request, "pages/suratmasuk/surat_masuk_page.html", context)
 
 
@@ -37,11 +56,13 @@ def tambah_suratmasuk_page(request: HttpRequest):
         # path_file = os.path.join(MEDIA_ROOT, filename)
 
         data = SuratMasukModel(
-            no_surat=no_surat,
+            no_surat=f"{no_surat}",
             tgl_surat=tgl_surat,
             hal=hal,
             file=file,
         )
+
+        print(f"No Surat : {no_surat}")
 
         data.save()
 

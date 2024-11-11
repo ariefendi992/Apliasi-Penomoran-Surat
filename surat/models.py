@@ -3,15 +3,6 @@ from django.db import models
 from masterdata.models import SukuMasalahModel, BalaiModel, TandaTanganModel
 
 
-def custom_upload_to(instance, filename):
-    ext = filename.split(".")[-1]
-    dt = datetime.today()
-    time = f"{dt.second}{dt.minute}{dt.hour}"
-    date = f"{dt.day}{dt.month}{dt.year}"
-
-    # f_name = f"{}"
-
-
 class SuratKeluarModel(models.Model):
     suku_masalah = models.ForeignKey(
         SukuMasalahModel,
@@ -52,15 +43,8 @@ class SuratMasukModel(models.Model):
     hal = models.CharField(blank=True, null=True, max_length=150)
     file = models.FileField(upload_to="surat_masuk/", blank=True, null=True)
 
-    def __init__(self, no_surat, tgl_surat, hal, file, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.no_surat = (no_surat,)
-        self.tgl_surat = tgl_surat
-        self.hal = hal
-        self.file = file
-
     def __str__(self):
-        return f"{self.hal}"
+        return f"{self.no_surat}"
 
     class Meta:
         db_table = "tb_surat_masuk"
