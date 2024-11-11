@@ -27,7 +27,11 @@ def daftar_suratkeluar_page(request):
     query_surat = SuratKeluarModel.objects.all()
     data_surat = []
     for i in query_surat:
-        no_surat = f"{i.suku_masalah.bagianmasalah.masalahpokok.kode}.{i.suku_masalah.bagianmasalah.kode}.{i.suku_masalah.kode}-{i.kode_balai.kode_balai}.{i.ttd.kode}/{i.no_urut}"
+        no_surat = (
+            f"{i.suku_masalah.bagianmasalah.masalahpokok.kode}.{i.suku_masalah.bagianmasalah.kode}.{i.suku_masalah.kode}-{i.kode_balai.kode_balai}.{i.ttd.kode}/{i.no_urut}"
+            if i.ttd.kode is not None
+            else f"{i.suku_masalah.bagianmasalah.masalahpokok.kode}.{i.suku_masalah.bagianmasalah.kode}.{i.suku_masalah.kode}-{i.kode_balai.kode_balai}/{i.no_urut}"
+        )
         filename = f"{i.file}".split("surat_keluar/")
         reverse_filename = f"surat_keluar\\".join(filename)
         data_surat.append(
