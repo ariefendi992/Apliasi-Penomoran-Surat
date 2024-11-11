@@ -24,8 +24,26 @@ def tambah_suratmasuk_page(request: HttpRequest):
 
 
 def daftar_suratkeluar_page(request):
+    query_surat = SuratKeluarModel.objects.all()
+    data_surat = []
+    for i in query_surat:
+        no_surat = f"{i.suku_masalah.bagianmasalah.masalahpokok.kode}.{i.suku_masalah.bagianmasalah.kode}.{i.suku_masalah.kode}-{i.kode_balai.kode_balai}.{i.ttd.kode}/{i.no_urut}"
+        filename = f"{i.file}".split("surat_keluar/")
+        reverse_filename = f"surat_keluar\\".join(filename)
+        data_surat.append(
+            {
+                "tgl": i.tgl_surat,
+                "noSurat": no_surat,
+                "hal": i.hal,
+                "doc": reverse_filename,
+            }
+        )
 
-    context = dict(titlepage="Surat Keluar", page="suratkeluar")
+    context = dict(
+        titlepage="Surat Keluar",
+        page="suratkeluar",
+        data=data_surat,
+    )
     return render(request, "pages/suratkeluar/surat_keluar_page.html", context)
 
 

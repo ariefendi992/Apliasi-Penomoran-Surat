@@ -32,7 +32,24 @@
             </tr>
           </thead>
           <tbody>
-            <tr></tr>
+            {% for i in data %}
+            <tr>
+              <td class="text-center">{{ forloop.counter }}.</td>
+              <td class="text-center">{{ i.tgl }}</td>
+              <td>{{ i.noSurat }}</td>
+              <td>{{ i.hal }}</td>
+              <td><a href="{% url 'masterdata:download' i.doc %}">Download</a>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-warning btn-sm">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a href="" class="btn btn-danger btn-sm">
+                  <i class="fa fa-trash"></i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>

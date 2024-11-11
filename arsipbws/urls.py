@@ -15,8 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from . import settings
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+
 
 admin.site.site_header = "e-Arsip BWS PB"
 
@@ -25,4 +28,7 @@ urlpatterns = [
     path("", include("beranda.urls")),
     path("", include("surat.urls")),
     path("api/v2/", include("api.urls")),
+    path("", include("masterdata.urls")),
 ]
+
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

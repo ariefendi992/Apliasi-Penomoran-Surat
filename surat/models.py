@@ -35,7 +35,7 @@ class SuratKeluarModel(models.Model):
     file = models.FileField(upload_to="surat_keluar/", blank=True, null=True)
 
     def __str__(self):
-        pass
+        return f"{self.hal}"
 
     class Meta:
         db_table = "tb_surat_keluar"
