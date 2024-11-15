@@ -69,14 +69,14 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{% url 'surat:daftarsuratmasuk' %}"
+              <a href="{% url 'suratmasuk:daftarsuratmasuk' %}"
                 class="nav-link {% if page == 'suratmasuk' %} active {% endif %}">
                 <i class="far {% if page == 'suratmasuk' %} fa-dot-circle {% else %} fa-circle {% endif %}"></i>
                 <p>Surat Masuk</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'surat:daftarsuratkeluar' %}"
+              <a href="{% url 'suratkeluar:daftarsuratkeluar' %}"
                 class="nav-link {% if page == 'suratkeluar' %} active {% endif %}">
                 <i class="far {% if page == 'suratkeluar' %} fa-dot-circle {% else %} fa-circle {% endif %}"></i>
                 <p>Surat Keluar</p>
@@ -98,61 +98,7 @@
           </ul>
         </li>
 
-        <!-- <li
-          class="nav-item {% if page == 'suratmasuk' or page == 'tambahsuratmasuk' %} menu-open {% else %} None {% endif %}">
-          <a href="#"
-            class="nav-link {% if page == 'suratmasuk' or page == 'tambahsuratmasuk' %} active {% else %} None {% endif %}">
-            <i class="nav-icon fas fa-file"></i>
-            <p>Surat Masuk
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{% url 'surat:tambahsuratmasuk' %}"
-                class="nav-link {% if page == 'tambahsuratmasuk' %} active {% endif %}">
-                <i
-                  class="far {% if page == 'tambahsuratmasuk' %} fa-dot-circle {% else %} fa-circle {% endif %} nav-icon"></i>
-                <p>Tambah Data</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a href="{% url 'surat:daftarsuratmasuk' %}"
-                class="nav-link {% if page == 'suratmasuk' %} active {% else %} None {% endif %}">
-                <i
-                  class="far  nav-icon {% if page == 'suratmasuk' %} fa-dot-circle {% else %} fa-circle {% endif %}"></i>
-                <p>Daftar Surat</p>
-              </a>
-            </li>
-          </ul>
-        </li> -->
 
-        <!-- <li class="nav-item {% if page == 'suratkeluar' or page == 'tambahsuratkeluar' %} menu-open {% endif %}">
-          <a href="#" class="nav-link {% if page == 'suratkeluar' or page == 'tambahsuratkeluar' %} active {% endif %}">
-            <i class="nav-icon fas fa-file"></i>
-            <p>Surat Keluar
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{% url 'surat:tambahsuratkeluar' %}"
-                class="nav-link {% if page == 'tambahsuratkeluar' %} active {% endif %}">
-                <i
-                  class="far {% if page == 'tambahsuratkeluar' %} fa-dot-circle {% else %} fa-circle {% endif %} nav-icon"></i>
-                <p>Tambah Data</p>
-              </a>
-            </li>
-            <li class="nav-item ">
-              <a href="{% url 'surat:daftarsuratkeluar' %}"
-                class="nav-link {% if page == 'suratkeluar' %} active {% endif %}">
-                <i
-                  class="far {% if page == 'suratkeluar' %} fa-dot-circle {% else %} fa-circle {% endif %} nav-icon "></i>
-                <p>Daftar Surat</p>
-              </a>
-            </li>
-          </ul>
-        </li> -->
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

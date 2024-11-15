@@ -14,7 +14,7 @@
       <div class="card-header">
         <div class="row align-items-center justify-content-between">
           <h2 class="card-title">Data Tabel Surat Masuk</h2>
-          <a href="{% url 'surat:tambahsuratmasuk' %}" class="btn btn-info">Tambah</a>
+          <a href="{% url 'suratmasuk:tambahsuratmasuk' %}" class="btn btn-info">Tambah</a>
         </div>
       </div>
       <div class="card-body">
@@ -36,7 +36,7 @@
               <td class="text-center">{{ i.tgl }}</td>
               <td>{{ i.noSurat }}</td>
               <td>{{ i.hal }}</td>
-              <td class="text-center"><a href="" class=" btn btn-sm btn-success">
+              <td class="text-center"><a href="{% url 'masterdata:download' i.doc %}" class=" btn btn-sm btn-success">
                   <i class="fas fa-download"></i> <span>Download</span>
                 </a>
               </td>

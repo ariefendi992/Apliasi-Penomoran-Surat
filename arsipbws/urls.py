@@ -26,7 +26,9 @@ admin.site.site_header = "e-Arsip BWS PB"
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("beranda.urls")),
-    path("", include("surat.urls")),
+    path("", include("suratkeluar.urls")),
+    path("", include("suratmasuk.urls")),
+    path("", include("suratdinas.urls")),
     path("api/v2/", include("api.urls")),
     path("", include("masterdata.urls")),
 ]

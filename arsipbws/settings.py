@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     "akun",
     "masterdata",
     "beranda",
-    "surat",
+    "suratkeluar",
+    "suratmasuk",
+    "suratdinas",
     "api",
 ]
 
